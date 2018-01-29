@@ -35,12 +35,15 @@ router.route('/tasks')
     });
   })
   .post(function(req, res) {
-    var task = new TaskSchema();
+    var task = new Task();
     task.taskName = req.body.taskName;
+    task.done = req.body.done;
 
     task.save(function(err) {
-      if(err)
-      res.send(err);
+      if(err) {
+        res.send(err);
+        console.log(err)
+      }
       res.json({ message: 'task added' });
     });
   });
