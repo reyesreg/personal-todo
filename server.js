@@ -26,6 +26,7 @@ router.get('/', function(req, res) {
   res.json({ message: "ready to do, cap'n" });
 });
 
+// get & create tasks
 router.route('/tasks')
   .get(function(req, res) {
     Task.find(function(err, tasks) {
@@ -45,6 +46,29 @@ router.route('/tasks')
         console.log(err)
       }
       res.json({ message: 'task added' });
+    });
+  });
+
+// edit and delete tasks
+router.route('/tasks/:task_id')
+  .put(function(req, res) {
+    Task.findById(req.params.task_id, function(err, task) {
+      if(err)
+        res.send(err);
+      (req.body.taskName) ? task.taskName = req.body.taskName : null;
+      (req.body.done) ? task.done = req.body.done : null;
+      task.save(function(err) {
+        if (err)
+          res.send(err);
+        res.json({ message: "task updooted" });
+      });
+    });
+  })
+  .delete(function(req, res) {
+    Task.remove({ _id: req.params.task_id }, function(err, comment) {
+      if(err)
+        res.send(err);
+      res.json({ message: "task deleted" });
     });
   });
 
