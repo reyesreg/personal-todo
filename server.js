@@ -9,7 +9,7 @@ var router =express.Router();
 
 var port = process.env.API_PORT || 3001;
 
-mongoose.connect(`mongodb://${config.user}:${config.pass}@ds117868.mlab.com:17868/personal-todo`);
+mongoose.connect(`mongodb://${config.user}:${config.pass}@${config.db_address}`);
 
 app.use(bodyParser.json());
 

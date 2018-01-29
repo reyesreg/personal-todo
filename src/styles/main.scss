@@ -74,7 +74,12 @@ body {
   background-color: $light-gray;
   padding: 15px 20px;
   font-weight: 300;
-  border-bottom: 1px solid $dark-gray;
+  transition: 0.2s all ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eaeaea;
+  }
 
   &.done {
     text-decoration: line-through;
