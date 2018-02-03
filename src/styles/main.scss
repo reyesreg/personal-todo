@@ -76,9 +76,39 @@ body {
   font-weight: 300;
   transition: 0.2s all ease;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+
+  input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 80%;
+    font-weight: 300;
+    font-size: 16px;
+    color: $purple-accent;
+  }
+
+  .action-wrapper svg {
+    opacity: 0;
+    transition: 0.2s all ease;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
 
   &:hover {
     background-color: #eaeaea;
+
+    .action-wrapper svg {
+      opacity: 1;
+      color: #999;
+
+      &:hover {
+        color: $purple-accent;
+      }
+    }
   }
 
   &.done {
